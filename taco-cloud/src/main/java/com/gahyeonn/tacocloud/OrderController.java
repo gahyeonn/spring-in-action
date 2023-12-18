@@ -1,8 +1,10 @@
 package com.gahyeonn.tacocloud;
 
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,8 +24,13 @@ public class OrderController {
 
     //타코 주문 제출 처리
     @PostMapping
-    public String processOrder(Order order) {
+    public String processOrder(@Valid Order order, Errors errors) {
         //Order 객체가 제출된 폼 필드와 바인딩 됨
+
+        if (errors.hasErrors()) {
+            return "orderForm";
+        }
+
         log.info("Order submitted: " + order);
 
         return "redirect:/";

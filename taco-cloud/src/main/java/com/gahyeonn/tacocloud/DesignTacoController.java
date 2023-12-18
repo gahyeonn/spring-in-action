@@ -1,9 +1,11 @@
 package com.gahyeonn.tacocloud;
 
 import com.gahyeonn.tacocloud.Ingredient.Type;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -71,8 +73,16 @@ public class DesignTacoController {
 
     //타코를 디자인하는 사용자가 제출한 것을 처리
     @PostMapping
-    public String processDesign(Taco design) {
+    /*@Valid
+        해당 객체의 유효성 검사 수행(제출된 폼 데이터와 Taco 객체가 바인딩 된 후, 그리고 processDesign() 메서드의 코드가 실행되기 전)하라고 MVC에 알림
+        어떤 검사라도 에러가 있으면 에러의 상세 내역이 Errors 객체에 저장되어 전달됨
+     */
+    public String processDesign(@Valid Taco design, Errors errors) {
         //타코 디자인 폼이 제출될 때 이 폼의 필드는 processDesign() 인자로 전달되는 Taco 객체의 속성과 바인딩된다.
+
+        if (errors.hasErrors()) { //검사에 에러 있는지 확인
+            return "design";
+        }
 
         //ToDo 타코 디자인(선택된 식자재 내역) 저장
         log.info("Processing design: " + design);
