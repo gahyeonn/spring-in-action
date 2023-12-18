@@ -1,6 +1,5 @@
 package com.gahyeonn.tacocloud;
 
-import com.gahyeonn.tacocloud.web.HomeController;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -14,11 +13,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
    HomeController가 스프링 MVC에 등록되어 스프링 MVC에 웹 요청을 보낼 수 있음
    스프링 MVC를 테스트하기 위한 스프링 지원 설정 - 실제 서버 실행X, 모의(mocking) 매커니즘 사용 위해 테스트 클래스에 MockMvc 객체 주입
 */
-@WebMvcTest(HomeController.class) //HomeContoller의 웹 페이지 테스트
+
+@WebMvcTest
 public class HomeControllerTest {
 
     @Autowired
-    private  MockMvc mockMvc; //MockMvc를 주입한다.
+    private MockMvc mockMvc; //MockMvc를 주입한다.
 
     @Test
     public void testHomePage() throws Exception {
