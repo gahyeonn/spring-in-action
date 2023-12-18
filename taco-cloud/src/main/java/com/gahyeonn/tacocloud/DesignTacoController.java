@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.Arrays;
@@ -66,5 +67,16 @@ public class DesignTacoController {
                 .stream()
                 .filter(x -> x.getType().equals(type))
                 .collect(Collectors.toList());
+    }
+
+    //타코를 디자인하는 사용자가 제출한 것을 처리
+    @PostMapping
+    public String processDesign(Taco design) {
+        //타코 디자인 폼이 제출될 때 이 폼의 필드는 processDesign() 인자로 전달되는 Taco 객체의 속성과 바인딩된다.
+
+        //ToDo 타코 디자인(선택된 식자재 내역) 저장
+        log.info("Processing design: " + design);
+
+        return "redirect:/orders/current"; //redirect: 변경된 경로로 재접속하도록 리디렉션
     }
 }
