@@ -1,6 +1,8 @@
-package com.gahyeonn.tacocloud;
+package com.gahyeonn.tacocloud.web;
 
+import com.gahyeonn.tacocloud.Ingredient;
 import com.gahyeonn.tacocloud.Ingredient.Type;
+import com.gahyeonn.tacocloud.Taco;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
