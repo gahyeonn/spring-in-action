@@ -31,6 +31,16 @@ dependencies {
 
 	//유효성 검사
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+	//JdbcTemplate 사용
+	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+
+	//h2 데이터베이스 사용
+	runtimeOnly 'com.h2database:h2'
+
+
+
+
 }
 
 tasks.named('test') {
