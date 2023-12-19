@@ -6,8 +6,15 @@ import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 import org.hibernate.validator.constraints.CreditCardNumber;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 @Data
 public class Order {
+    private Long id;
+
+    private Date placedAt;
 
     //null, "", " " 허용X
     @NotBlank(message = "Name is required")
@@ -37,4 +44,10 @@ public class Order {
     //입력 값이 세 자리 숫자인지 검사
     @Digits(integer = 3, fraction = 0, message = "Invalid CVV")
     private String ccCVV;
+
+    private List<Taco> tacos = new ArrayList<>();
+
+    public void addDesign(Taco design) {
+        this.tacos.add(design);
+    }
 }
